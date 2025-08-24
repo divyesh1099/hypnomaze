@@ -8,12 +8,6 @@
 🚀 Features
 -----------
 
-Feature
-
-Description
-
-Status
-
 **Dynamic Maze**
 
 A new maze is generated every time using a Depth-First Search algorithm. No two runs are the same!
