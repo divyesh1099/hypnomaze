@@ -14,18 +14,25 @@ import { PointerLockControls, Billboard, Text, Html } from '@react-three/drei'
 
 // --------------------- USER PROJECTS ---------------------------
 const PROJECTS = [
-  { title: 'FastPDF Runtime', url: 'https://github.com/divyesh1099', blurb: 'CPU‑only blank/duplicate page detection pipeline.' },
-  { title: 'Rural Company (AC Services)', url: 'https://example.com/rural-company', blurb: 'Ops + inventory app for appliance servicing.' },
-  { title: '3D Blog (GSAP + R3F)', url: 'https://example.com/3d-blog', blurb: 'Cinematic 3D blog with Sanity CMS.' },
-  { title: 'Vyapar‑like Inventory (Flutter)', url: 'https://example.com/vyapar', blurb: 'Desktop‑class inventory UI in Flutter Web.' },
-  { title: 'PQC × Param Shivay', url: 'https://example.com/pqc', blurb: 'Quantum‑resilient ML research notes.' },
-  // New additions (feel free to swap URLs)
-  { title: 'HypnoMaze (This Site)', url: 'https://example.com/hypnomaze', blurb: 'The maze you are in—source & write‑up.' },
-  { title: 'Solaris Shader Remix', url: 'https://example.com/solaris', blurb: 'Procedural colorfield riffs inspired by Catacomb of Solaris.' },
-  { title: 'WebGPU Flowfields', url: 'https://example.com/webgpu-flow', blurb: 'Compute‑shader experiments with curl noise and advection.' },
-  { title: 'Realtime OCR (WASM)', url: 'https://example.com/wasm-ocr', blurb: 'In‑browser OCR with SIMD & worker threads.' },
-  { title: 'LLM Toolkit', url: 'https://example.com/llm-tools', blurb: 'Small utilities for embeddings, RAG and evals.' },
-  { title: 'Resume & Contact', url: 'https://example.com/resume', blurb: 'Say hi 👋' },
+  { title: 'HypnoMaze', url: 'https://github.com/divyesh1099/hypnomaze', blurb: 'Platform to showcase my projects the fun way. You are here!' },
+  { title: 'Portfolio', url: 'https://github.com/divyesh1099/divyesh1099.github.io', blurb: 'My personal portfolio website.' },
+  { title: 'Motor Switch (Arduino)', url: 'https://github.com/divyesh1099/motorSwitchArduino', blurb: 'Arduino Code for NodeMCU to control a switch module.' },
+  { title: 'Kitni Roti', url: 'https://github.com/divyesh1099/kitniRoti', blurb: 'Users can tell the chef how many Rotis they want to eat.' },
+  { title: 'Compress PDF', url: 'https://github.com/divyesh1099/compressPDF', blurb: 'Compress PDFs easily for free, totally open source.' },
+  { title: 'Motor Switch (NodeMCU)', url: 'https://github.com/divyesh1099/motorSwitch', blurb: 'Control a Switch via NodeMCU over WiFi with a Servo actuator.' },
+  { title: 'dmarkify', url: 'https://github.com/divyesh1099/dmarkify', blurb: 'A watermarking tool for text and image watermarks using React and Django.' },
+  { title: 'snapHub', url: 'https://github.com/divyesh1099/snapHub', blurb: 'A Django project to share stunning images, with Gmail SMTP and TailwindCSS.' },
+  { title: 'Jyotii', url: 'https://github.com/divyesh1099/jyotii', blurb: 'An IoT Project to track the live status of the Akhand Navratri Jyoti.' },
+  { title: 'Resume Customizer', url: 'https://github.com/divyesh1099/resumeCustomizer', blurb: 'Helps professionals tailor resumes and cover letters for job applications.' },
+  { title: 'Deficit-App', url: 'https://github.com/divyesh1099/Deficit-App', blurb: 'A Flutter app to track a user\'s calorie deficit.' },
+  { title: 'Ram Mandir VR', url: 'https://github.com/divyesh1099/ramMandirVR', blurb: 'A virtual reality experience of the Shri Ram Mandir of Ayodhya.' },
+  { title: 'ChatGemini', url: 'https://github.com/divyesh1099/ChatGemini', blurb: 'A Flutter application that uses Google\'s Gemini API.' },
+  { title: 'WiChat', url: 'https://github.com/divyesh1099/WiChat', blurb: 'Chat without internet over a local LAN (WiFi, hotspot, or wired).' },
+  { title: 'WiFi Calling', url: 'https://github.com/divyesh1099/wificalling', blurb: 'Python-based voice calls over a local Wi-Fi network.' },
+  { title: '3D T-Shirt Customizer', url: 'https://github.com/divyesh1099/threeshirt', blurb: 'AI-Powered 3D Tshirt Customizer with Three.js, React, and Tailwind.' },
+  { title: 'LeetCode Bahubali', url: 'https://github.com/divyesh1099/leetcodebahubali', blurb: 'Chrome extension that plays Bahubali music when your solution is accepted.' },
+  { title: 'Bhiksha', url: 'https://github.com/divyesh1099/bhiksha', blurb: 'Yes, you can beg online now. Money, forgiveness, a date... start begging!'},
+  { title: 'Resume & Contact', url: 'https://divyeshvishwakarma.com', blurb: 'Say hi 👋' },
 ]
 
 // Maze sizing (slightly simpler grid + optional braiding for loops)
