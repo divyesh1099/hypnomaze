@@ -1,12 +1,93 @@
-# React + Vite
+🌀 HypnoMaze - A 3D Project Showcase
+====================================
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**HypnoMaze** is not just a portfolio; it's an immersive 3D experience. Navigate a dynamically generated, hypnotic maze to discover cool open-source projects, each waiting at a portal in the maze's dead ends.
 
-Currently, two official plugins are available:
+### ✨ [**Live Demo: projects.divyeshvishwakarma.com**](https://www.google.com/search?q=https://projects.divyeshvishwakarma.com) ✨
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🚀 Features
+-----------
 
-## Expanding the ESLint configuration
+Feature
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Description
+
+Status
+
+**Dynamic Maze**
+
+A new maze is generated every time using a Depth-First Search algorithm. No two runs are the same!
+
+✅ Complete
+
+**Interactive Portals**
+
+Every dead-end features a portal to a different project, complete with title, blurb, and a link.
+
+✅ Complete
+
+**Hypnotic Shaders**
+
+Walls, floor, and ceiling are rendered with a mesmerizing, procedural shader that reacts to your movement.
+
+✅ Complete
+
+**First-Person Controls**
+
+Smooth, intuitive controls (WASD to move, Mouse to look) make exploration seamless.
+
+✅ Complete
+
+**Mini-Map**
+
+Feeling lost? Press M to toggle a mini-map and find your way.
+
+✅ Complete
+
+**Anti-Stick Physics**
+
+A custom nudge mechanic prevents you from getting stuck in corners, ensuring smooth gameplay.
+
+✅ Complete
+
+🛠️ Getting Started Locally
+---------------------------
+
+Want to run your own version of HypnoMaze? It's easy!
+```shell
+git clone [https://github.com/divyesh1099/hypnomaze.git](https://github.com/divyesh1099/hypnomaze.git)
+
+cd hypnomaze
+    
+npm install
+    
+npm run devYour local copy will be running at http://localhost:3000.
+```    
+
+🎨 Showcase Your Own Projects
+-----------------------------
+
+The best part about HypnoMaze is how easy it is to add your own projects.
+
+1.  **Open the App.jsx file.**
+    
+2.  **Find the PROJECTS array** at the top of the file.
+    
+3.  **Add your project details** as a new object in the array. That's it!
+    
+
+```   // src/App.jsx  
+const PROJECTS = [    // ... existing projects    {      title: 'Your Awesome Project',      url: '[https://github.com/your-username/your-repo](https://github.com/your-username/your-repo)',      blurb: 'A short, catchy description of what your project does.'    },    // ... more of your projects  ];
+```
+
+The maze will automatically create a portal for your new project.
+
+🤝 Contributing
+---------------
+
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://www.google.com/search?q=https://github.com/divyesh1099/hypnomaze/issues).
+
+📜 License
+----------
+
+This project is open source and available under the [MIT License](https://www.google.com/search?q=LICENSE).
