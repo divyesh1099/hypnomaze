@@ -12,8 +12,16 @@ import * as THREE from 'three'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { PointerLockControls, Billboard, Text, Html } from '@react-three/drei'
 
+// --- TRIBUTE ---------------------------------------------------
+const TRIBUTE = {
+  title: 'Tribute: PapaPupp',
+  url: 'https://www.youtube.com/@PapaPupp', // PapaPupp’s YT
+  blurb: 'Huge thanks to PapaPupp—his Catacombs of Solaris Revisited videos inspired HypnoMaze.'
+};
+
 // --------------------- USER PROJECTS ---------------------------
 const PROJECTS = [
+  { title: 'Resume & Contact', url: 'https://divyeshvishwakarma.com', blurb: 'Say hi 👋' },
   { title: 'HypnoMaze', url: 'https://github.com/divyesh1099/hypnomaze', blurb: 'Platform to showcase my projects the fun way. You are here!' },
   { title: 'Portfolio', url: 'https://github.com/divyesh1099/divyesh1099.github.io', blurb: 'My personal portfolio website.' },
   { title: 'Motor Switch (Arduino)', url: 'https://github.com/divyesh1099/motorSwitchArduino', blurb: 'Arduino Code for NodeMCU to control a switch module.' },
@@ -32,7 +40,8 @@ const PROJECTS = [
   { title: '3D T-Shirt Customizer', url: 'https://github.com/divyesh1099/threeshirt', blurb: 'AI-Powered 3D Tshirt Customizer with Three.js, React, and Tailwind.' },
   { title: 'LeetCode Bahubali', url: 'https://github.com/divyesh1099/leetcodebahubali', blurb: 'Chrome extension that plays Bahubali music when your solution is accepted.' },
   { title: 'Bhiksha', url: 'https://github.com/divyesh1099/bhiksha', blurb: 'Yes, you can beg online now. Money, forgiveness, a date... start begging!'},
-  { title: 'Resume & Contact', url: 'https://divyeshvishwakarma.com', blurb: 'Say hi 👋' },
+  { title: 'PuppaPupp', url: 'https://www.youtube.com/@PapaPupp', blurb: 'This is the awesome youtuber that inspired this project when I saw a youtube short where he was playing that awesome game named "The Catacombs of Solaris Revisited".'},
+  { title: 'The Catacombs of Solaris Revisited', url: 'https://ianmaclarty.itch.io/catacombs-of-solaris', blurb: 'The game that inspired this project. Check out the full version!'},
 ]
 
 // Maze sizing (slightly simpler grid + optional braiding for loops)
@@ -60,6 +69,63 @@ const wallShader = { uniforms:{ uTime:{value:0}, uCamPos:{value:new THREE.Vector
     void main(){ vec3 n=normalize(abs(vWorldNormal)); vec2 uvx=vWorldPos.zy; vec2 uvy=vWorldPos.xz; vec2 uvz=vWorldPos.xy; vec2 base=(n.x>n.y&&n.x>n.z)?uvx:(n.y>n.z?uvy:uvz); vec2 uv=base*(uTiling*0.5); uv+=uCamPos.xz*0.10; vec2 dir=normalize(uViewDir.xz+1e-5); float an=atan(dir.y,dir.x); mat2 rot=mat2(cos(an),-sin(an),sin(an),cos(an)); vec2 fuv=rot*(uv+vec2(uTime*(0.7+2.5*uFlow),0.0)); float idleK=smoothstep(0.2,1.0,clamp(uIdle,0.0,1.0)); vec2 warp=vec2(noise(uv*0.6+uTime*0.3),noise(uv*0.6-uTime*0.25)); warp+=idleK*vec2(noise(uv*2.5+uTime*2.0),noise(uv*2.5-uTime*1.6))*1.6; fuv+=(warp-0.5)*(1.4+2.4*uIntensity); float freq=mix(2.5,8.0,uIntensity)+idleK*8.0; float a=sin(fuv.x*freq+uTime*3.5)*0.5+0.5; float b=sin(length(uv-7.0)*(4.0+6.0*uIntensity)+uTime*2.6)*0.5+0.5; float c=step(0.5,fract(fuv.y*1.1+uTime*0.09)); float s=mix(a,b,0.55)*0.6 + c*0.4; s=pow(s,mix(0.55,1.85,uIntensity)); float hue=fract(s+uTime*0.035+dot(uCamPos.xy,vec2(0.02,-0.015))); float sat=mix(0.7,1.0,uIntensity); float val=mix(0.6,1.0,uIntensity)*mix(1.0,1.25,uFlow); vec3 col=hsv2rgb(vec3(hue,sat,val)); float shimmer=smoothstep(0.35,0.65,abs(sin((fuv.x+fuv.y)*3.8+uTime*12.0))); col=mix(col,col*1.5+vec3(0.25)*shimmer,idleK*0.55); gl_FragColor=vec4(col, 1.0); }
   `,
 }
+
+function TributeMarker({ x, z, tribute }) {
+  const ringRef = useRef();
+  useFrame(({ clock }) => { if (ringRef.current) ringRef.current.rotation.z = clock.getElapsedTime() * 1.2 });
+
+  const open = () => window.open(tribute.url, '_blank', 'noopener');
+
+  return (
+    <group position={[x, 0, z]}>
+      <pointLight color={new THREE.Color('#ffd166')} intensity={1.6} distance={7} position={[0,2.2,0]} />
+      <mesh ref={ringRef} position={[0,1.4,0]} rotation={[Math.PI/2,0,0]}>
+        <torusGeometry args={[0.65, 0.12, 24, 96]} />
+        <meshBasicMaterial color={'#ffd166'} transparent opacity={0.95} />
+      </mesh>
+
+      <Billboard position={[0, 2.2, 0]}>
+        <mesh>
+          <planeGeometry args={[2.6, 1.2]} />
+          <meshBasicMaterial color={'#000'} transparent opacity={0.55} />
+        </mesh>
+        <Text position={[0,0.18,0.01]} fontSize={0.22} color="#fff" anchorY="top" maxWidth={2.3}>
+          {tribute.title}
+        </Text>
+        <Text position={[0,-0.18,0.01]} fontSize={0.12} color="#ffe8b5" maxWidth={2.3}>
+          Press P to visit • Press E on any portal
+        </Text>
+      </Billboard>
+
+      {/* Clickable HTML button too (optional) */}
+      <Html position={[0, 0.9, 0]} distanceFactor={12} transform occlude>
+        <button onClick={open} style={{
+          padding:'6px 10px', borderRadius:8, border:'1px solid rgba(255,255,255,0.25)',
+          background:'rgba(0,0,0,0.6)', color:'#ffd166', cursor:'pointer', fontWeight:700
+        }}>
+          Open PapaPupp Channel
+        </button>
+      </Html>
+    </group>
+  );
+}
+
+function CreditRibbon() {
+  return (
+    <div style={{
+      position:'fixed', right:12, bottom:12, pointerEvents:'auto',
+      background:'rgba(0,0,0,0.55)', border:'1px solid rgba(255,255,255,0.25)',
+      borderRadius:12, padding:'8px 10px', color:'#fff', fontSize:12
+    }}>
+      Inspired by <a href={TRIBUTE.url} target="_blank" rel="noreferrer" style={{color:'#ffd166', fontWeight:700}}>PapaPupp</a>
+      <span style={{opacity:0.8}}> • </span>
+      <a href="https://ianmaclarty.itch.io/catacombs-of-solaris" target="_blank" rel="noreferrer" style={{color:'#a7f3d0'}}>
+        Catacombs of Solaris Revisited
+      </a>
+    </div>
+  );
+}
+
 function makeMaterial(shared, tiling){ return new THREE.ShaderMaterial({ ...wallShader, side:THREE.DoubleSide, uniforms:{ uTime:shared.uTime, uCamPos:shared.uCamPos, uViewDir:shared.uViewDir, uIntensity:shared.uIntensity, uIdle:shared.uIdle, uFlow:shared.uFlow, uTiling:{value:tiling} } }) }
 
 // --------------------- STRUCTURE -------------------------------
@@ -108,6 +174,15 @@ function Player({ grid, sharedUniforms, portals, onOpen, setNear }){
   const MAX_SPEED = 4.8, DAMP = 10.0, RADIUS = CELL*0.30 // slightly smaller radius helps exiting corners
 
   useEffect(()=>{ camera.position.set((1-GRID.cols/2+0.5)*CELL, PLAYER_H, (1-GRID.rows/2+0.5)*CELL) },[camera])
+  useEffect(()=> {
+    const onKey=(e)=>{
+      if(e.code==='KeyM') setShowMap(s=>!s);
+      if(e.code==='KeyF'){ if(document.fullscreenElement) document.exitFullscreen(); else { const de=document.documentElement; de.requestFullscreen?.() } }
+      if(e.code==='KeyP'){ window.open(TRIBUTE.url, '_blank', 'noopener'); } // <— Tribute hotkey
+    };
+    window.addEventListener('keydown', onKey);
+    return ()=>window.removeEventListener('keydown', onKey);
+  }, []);
 
   useFrame((_, dt)=>{
     const v = new THREE.Vector3(0,0,-1).applyQuaternion(camera.quaternion)
@@ -194,6 +269,9 @@ function Scene({ intensity, reduceMotion, onVisit }){
   const [near,setNear]=useState(null)
   const handleOpen = (meta)=>{ if(!meta?.url) return; onVisit(meta); window.open(meta.url,'_blank','noopener') }
 
+  // Place shrine a bit to the right of the spawn tile (grid 1,1)
+  const startX = (1 - GRID.cols/2 + 0.5) * CELL + CELL * 1.6;
+  const startZ = (1 - GRID.rows/2 + 0.5) * CELL;
   return (
     <>
       <color attach="background" args={[0.02,0.02,0.03]} />
@@ -203,6 +281,9 @@ function Scene({ intensity, reduceMotion, onVisit }){
       <Walls grid={grid} sharedUniforms={sharedUniforms} />
       <mesh rotation={[-Math.PI/2,0,0]} position={[0,0,0]} material={groundMat}><planeGeometry args={[GRID.cols*CELL, GRID.rows*CELL]} /></mesh>
       <mesh rotation={[Math.PI/2,0,0]} position={[0,WALL_H,0]} material={ceilMat}><planeGeometry args={[GRID.cols*CELL, GRID.rows*CELL]} /></mesh>
+
+      {/* Tribute shrine near spawn */}
+      <TributeMarker x={startX} z={startZ} tribute={TRIBUTE} />
 
       {portals.map((p,i)=>(<ProjectMarker key={`${p.x},${p.z},${i}`} x={p.x} z={p.z} title={p.meta.title} blurb={p.meta.blurb} />))}
 
@@ -275,6 +356,7 @@ export default function App(){
         <MiniMap show={showMap} />
       </Canvas>
       <UI intensity={intensity} setIntensity={setIntensity} reduceMotion={reduceMotion} setReduceMotion={setReduceMotion} showMap={showMap} setShowMap={setShowMap} visited={visitedSet.size} total={PROJECTS.length} />
+      <CreditRibbon />
       <div style={{ position:'absolute', bottom:8, left:0, right:0, textAlign:'center', color:'rgba(255,255,255,0.6)', fontFamily:'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace', fontSize:11, pointerEvents:'none' }}>
         HypnoMaze v6 • Dead‑end portals • E: open • F: fullscreen • M: map
       </div>
