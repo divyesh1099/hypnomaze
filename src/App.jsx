@@ -23,7 +23,7 @@ const TRIBUTE = {
 const PROJECTS = [
   { title: 'Resume & Contact', url: 'https://divyeshvishwakarma.com', blurb: 'Say hi 👋' },
   { title: 'HypnoMaze', url: 'https://github.com/divyesh1099/hypnomaze', blurb: 'Platform to showcase my projects the fun way. You are here!' },
-  { title: 'Portfolio', url: 'https://github.com/divyesh1099/divyesh1099.github.io', blurb: 'My personal portfolio website.' },
+  { title: 'Portfolio', url: 'https://divyesh1099.github.io', blurb: 'My personal portfolio website.' },
   { title: 'Motor Switch (Arduino)', url: 'https://github.com/divyesh1099/motorSwitchArduino', blurb: 'Arduino Code for NodeMCU to control a switch module.' },
   { title: 'Kitni Roti', url: 'https://github.com/divyesh1099/kitniRoti', blurb: 'Users can tell the chef how many Rotis they want to eat.' },
   { title: 'Compress PDF', url: 'https://github.com/divyesh1099/compressPDF', blurb: 'Compress PDFs easily for free, totally open source.' },
